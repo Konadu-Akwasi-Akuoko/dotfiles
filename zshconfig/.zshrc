@@ -1,3 +1,7 @@
+# setting up keyring
+echo "Setting up keychain. Ignore this and press enter if you're not going to use any git commands."
+eval `keychain --eval --agents ssh id_ed25519`
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -154,10 +158,6 @@ export M2_HOME=/home/akwasi_akuoko/.sdkman/candidates/maven/current
 
 # export for nvim
 export PATH="$PATH:/opt/nvim-linux64/bin"
-
-# setting up keyring
-echo "Setting up keychain. Ignore this and press enter if you're not going to use any git commands."
-eval `keychain --eval --agents ssh id_ed25519`
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
