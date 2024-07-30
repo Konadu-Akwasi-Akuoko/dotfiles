@@ -15,6 +15,7 @@ config.font_size = 9.5
 config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
+config.window_background_opacity = 0.9
 
 -- and finally, return the configuration to wezterm
 return config
