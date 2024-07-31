@@ -33,4 +33,4 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- buffer management
-keymap.set("n", "<leader>bd", "<cmd>bufdo bd", { desc = "Delete all buffers" }) -- delete all buffers
+keymap.set("n", "<leader>bd", "<cmd>bufdo bd<CR>", { desc = "Delete all buffers" }) -- delete all buffers
