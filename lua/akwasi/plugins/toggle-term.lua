@@ -4,6 +4,6 @@ return {
 	opts = {
 		open_mapping = [[<A-t>]],
 		direction = "float",
-		auto_scroll = true,
+		-- auto_scroll = true,
 	},
 }
