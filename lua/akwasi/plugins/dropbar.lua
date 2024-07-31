@@ -7,7 +7,6 @@ return {
 	config = function()
 		require("dropbar")
 
-		vim.g.mapleader = " "
 		local keymap = vim.keymap
 
 		function open_fuzzy_finder()
