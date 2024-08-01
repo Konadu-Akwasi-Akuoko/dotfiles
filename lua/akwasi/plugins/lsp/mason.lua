@@ -14,8 +14,8 @@ return {
 		local mason_tool_installer = require("mason-tool-installer")
 
     -- Setup nvim-java
-		require("java").setup()
-		require("lspconfig").jdtls.setup({})
+		-- require("java").setup()
+		-- require("lspconfig").jdtls.setup({})
 
 		-- enable mason and configure icons
 		mason.setup({
