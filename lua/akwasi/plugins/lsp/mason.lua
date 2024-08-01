@@ -13,6 +13,10 @@ return {
 
 		local mason_tool_installer = require("mason-tool-installer")
 
+    -- Setup nvim-java
+		require("java").setup()
+		require("lspconfig").jdtls.setup({})
+
 		-- enable mason and configure icons
 		mason.setup({
 			ui = {
@@ -51,5 +55,8 @@ return {
 				"eslint_d", -- js linter
 			},
 		})
+
+
+
 	end,
 }
