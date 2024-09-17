@@ -3,6 +3,9 @@ return {
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"mfussenegger/nvim-lint",
+		"rshkarin/mason-nvim-lint",
+		-- "nvim-java/nvim-java",
 	},
 	config = function()
 		-- import mason
@@ -13,7 +16,9 @@ return {
 
 		local mason_tool_installer = require("mason-tool-installer")
 
-    -- Setup nvim-java
+		local mason_nvim_lint = require("mason-nvim-lint")
+
+		-- Setup nvim-java
 		-- require("java").setup()
 		-- require("lspconfig").jdtls.setup({})
 
@@ -42,6 +47,9 @@ return {
 				"emmet_ls",
 				"prismals",
 				"pyright",
+				"jdtls",
+				"marksman",
+				-- "java_language_server",
 			},
 		})
 
@@ -53,10 +61,16 @@ return {
 				-- "black", -- python formatter,
 				-- "pylint", -- python linter
 				"eslint_d", -- js linter
+				"markdownlint-cli2",
+				"markdown-toc",
 			},
 		})
 
-
-
+		mason_nvim_lint.setup({
+			ensure_installed = {
+				"markdownlint-cli2",
+				"markdown-toc",
+			},
+		})
 	end,
 }

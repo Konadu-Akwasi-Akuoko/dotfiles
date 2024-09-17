@@ -1,3 +1,7 @@
+local languageServerPath = vim.fn.stdpath("config") .. "/lua/languageserver"
+local cmd =
+	{ "ngserver", "--stdio", "--tsProbeLocations", languageServerPath, "--ngProbeLocations", languageServerPath }
+
 return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
@@ -5,6 +9,7 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
+		-- "nvim-java/nvim-java",
 	},
 	config = function()
 		-- import lspconfig plugin
@@ -113,11 +118,16 @@ return {
 					capabilities = capabilities,
 				})
 			end,
+			-- ["jdtls"] = function()
+			-- 	lspconfig["java"].setup({})
+			-- 	lspconfig["jdtls"].setup({})
+			-- end,
 			["angularls"] = function()
 				lspconfig["angularls"].setup({
 					capabilities = capabilities,
 					on_attach = on_attach,
 					root_dir = util.root_pattern("angular.json", "project.json", "nx.json"),
+					cmd = cmd,
 				})
 			end,
 			["svelte"] = function()

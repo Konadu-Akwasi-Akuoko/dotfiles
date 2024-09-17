@@ -65,7 +65,7 @@ return {
 				"c_sharp",
 				"cpp",
 				"elixir",
-				"java",
+				-- "java",
 				"markdown",
 				"python",
 				"rust",

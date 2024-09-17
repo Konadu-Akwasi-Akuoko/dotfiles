@@ -25,6 +25,8 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) 
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 keymap.set("n", "<leader>ss", "<C-w>x", { desc = "Swap windows" }) -- swap windows
+keymap.set("n", "<leader>sw", "<cmd>set wrap<CR>", { desc = "Set soft wrap on current window" }) -- Set soft wrap on current window
+keymap.set("n", "<leader>sn", "<cmd>set nowrap<CR>", { desc = "Set no soft wrap on current window" }) -- Set no soft wrap on current window
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
@@ -34,3 +36,4 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- buffer management
 keymap.set("n", "<leader>bd", "<cmd>bufdo bd<CR>", { desc = "Delete all buffers" }) -- delete all buffers
+keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Show all buffers with Telescope" })

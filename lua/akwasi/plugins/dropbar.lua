@@ -14,6 +14,6 @@ return {
 		end
 
 		-- Map a key to open fuzzy finder mode, when drobar is toggled
-		keymap.set("n", "f", ":lua open_fuzzy_finder()<CR>", { noremap = true, silent = true })
+		-- keymap.set("n", "f", ":lua open_fuzzy_finder()<CR>", { noremap = true, silent = true })
 	end,
 }

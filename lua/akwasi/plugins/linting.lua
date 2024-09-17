@@ -1,6 +1,11 @@
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
+	opts = {
+		linters_by_ft = {
+			markdown = { "markdownlint-cli2" },
+		},
+	},
 	config = function()
 		local lint = require("lint")
 
@@ -10,7 +15,8 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
-			python = { "pylint" },
+			-- markdown = { "markdownlint-cli2" },
+			-- python = { "pylint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

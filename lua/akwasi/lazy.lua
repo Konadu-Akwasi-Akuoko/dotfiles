@@ -12,11 +12,16 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	-- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-	-- { import = "lazyvim.plugins.extras.linting.eslint" },
-	-- { import = "plugins" },
-	{ import = "akwasi.plugins" },
-	{ import = "akwasi.plugins.lsp" },
+	spec = {
+		-- {
+		-- "LazyVim/LazyVim", import = "lazyvim.plugins" },
+		-- { import = "lazyvim.plugins.extras.linting.eslint" },
+		-- { import = "lazyvim.plugins.extras.lang.java" },
+		-- { import = "plugins" },
+		-- { import = "lazyvim.plugins.extras.lang.angular" },
+		{ import = "akwasi.plugins" },
+		{ import = "akwasi.plugins.lsp" },
+	},
 }, {
 	checker = {
 		enabled = true,
