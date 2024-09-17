@@ -19,6 +19,7 @@ config.enable_tab_bar = false
 -- Remove window decorations
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.9
+-- config.window_background_opacity = 1
 
 -- Autostart WSL
 config.default_domain = 'WSL:Ubuntu'

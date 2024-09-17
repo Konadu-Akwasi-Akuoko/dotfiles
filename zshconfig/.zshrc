@@ -114,6 +114,8 @@ source $ZSH/oh-my-zsh.sh
 # ~/SS/setDNS.sh
 
 alias ls="eza --icons=always"
+alias jetbrains="/opt/jetbrains-toolbox-2.3.2.31487/jetbrains-toolbox"
+alias cd="z"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -170,5 +172,15 @@ if [ -f '/home/akwasi_akuoko/google-cloud-sdk/path.zsh.inc' ]; then . '/home/akw
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/akwasi_akuoko/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/akwasi_akuoko/google-cloud-sdk/completion.zsh.inc'; fi
 
+# Zoxide setup
+eval "$(zoxide init zsh)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Setup fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
