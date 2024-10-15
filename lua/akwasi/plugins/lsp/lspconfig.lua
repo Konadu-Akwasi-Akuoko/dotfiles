@@ -185,6 +185,22 @@ return {
 					},
 				})
 			end,
+			["ts_ls"] = function()
+				-- configure lua to use vuejs volar
+				-- you will also need to install vue language server globally
+				lspconfig["ts_ls"].setup({
+					init_options = {
+						plugins = {
+							{
+								name = "@vue/typescript-plugin",
+								location = "/Users/konadu_akuoko/.nvm/versions/node/v20.17.0/lib/node_modules/@vue/language-server",
+								languages = { "vue" },
+							},
+						},
+					},
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+				})
+			end,
 		})
 	end,
 }

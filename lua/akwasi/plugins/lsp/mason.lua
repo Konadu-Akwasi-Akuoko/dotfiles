@@ -37,7 +37,7 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"angularls@17.3.2",
-				"tsserver",
+				"ts_ls",
 				"html",
 				"cssls",
 				"tailwindcss",
@@ -50,6 +50,9 @@ return {
 				"jdtls",
 				"marksman",
 				-- "java_language_server",
+				"volar",
+				-- "vuels", -- deprecated using volar instead
+				-- "tsserver", same as ts_ls
 			},
 		})
 

@@ -65,6 +65,7 @@ return {
 				"c_sharp",
 				"cpp",
 				"elixir",
+				"vue",
 				-- "java",
 				"markdown",
 				"python",

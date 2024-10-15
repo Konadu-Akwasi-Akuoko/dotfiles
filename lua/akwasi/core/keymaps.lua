@@ -37,3 +37,27 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 -- buffer management
 keymap.set("n", "<leader>bd", "<cmd>bufdo bd<CR>", { desc = "Delete all buffers" }) -- delete all buffers
 keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Show all buffers with Telescope" })
+
+-- hop management
+keymap.set("n", "<leader>jj", "<cmd>HopWord <CR>", { desc = "Hop to a word" })
+keymap.set("n", "<leader>jc", "<cmd>HopCamelCase <CR>", { desc = "Hop to a camelCase word" })
+keymap.set("n", "<leader>jb", "<cmd>HopChar1 <CR>", { desc = "Hop to any character in the current buffer" })
+keymap.set("n", "<leader>jg", "<cmd>HopChar2 <CR>", { desc = "Hop to any bigrams in the current buffer" })
+keymap.set(
+	"n",
+	"<leader>jp",
+	"<cmd>HopPattern <CR>",
+	{ desc = "Hop to an arbitrary search akin to / and go to any occurrences" }
+)
+keymap.set("n", "<leader>jl", "<cmd>HopLine <CR>", { desc = "Hop to any line" })
+keymap.set("n", "<leader>js", "<cmd>HopLineStart <CR>", { desc = "Hop to any line start" })
+keymap.set("n", "<leader>ja", "<cmd>HopAnywhere <CR>", { desc = "Hop to anywhere" })
+keymap.set("n", "<leader>jt", "<cmd>HopNodes <CR>", { desc = "Hop to treesitter nodes" })
+keymap.set("n", "<leader>jv", "<cmd>HopPaste <CR>", { desc = "Paste text in the hinted position without jumping" })
+keymap.set(
+	"n",
+	"<leader>jy",
+	"<cmd>HopYankChar1 <CR>",
+	{ desc = "Yank the text between two hinted position without jumping" }
+)
+keymap.set("n", "<leader>jm", "<cmd>Hop*MW <CR>", { desc = "Use Hop cross windows with multi-windows support" })
