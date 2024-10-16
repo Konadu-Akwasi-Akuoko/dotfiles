@@ -20,7 +20,7 @@ require("lazy").setup({
 		-- { import = "plugins" },
 		-- { import = "lazyvim.plugins.extras.lang.angular" },
 		{ import = "akwasi.plugins" },
-		{ import = "akwasi.plugins.lsp" },
+		-- { import = "akwasi.plugins.lsp" },
 	},
 }, {
 	checker = {
