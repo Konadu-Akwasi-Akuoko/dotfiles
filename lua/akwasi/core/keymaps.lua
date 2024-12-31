@@ -3,8 +3,7 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
 
----------------------
--- General Keymaps -------------------
+-- General Keymaps
 
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
@@ -13,7 +12,7 @@ keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- delete single character without copying into register
--- keymap.set("n", "x", '"_x')
+keymap.set("n", "x", '"_x')
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
@@ -28,6 +27,7 @@ keymap.set("n", "<leader>ss", "<C-w>x", { desc = "Swap windows" }) -- swap windo
 keymap.set("n", "<leader>sw", "<cmd>set wrap<CR>", { desc = "Set soft wrap on current window" }) -- Set soft wrap on current window
 keymap.set("n", "<leader>sn", "<cmd>set nowrap<CR>", { desc = "Set no soft wrap on current window" }) -- Set no soft wrap on current window
 
+-- tab management
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
@@ -61,3 +61,51 @@ keymap.set(
 	{ desc = "Yank the text between two hinted position without jumping" }
 )
 keymap.set("n", "<leader>jm", "<cmd>Hop*MW <CR>", { desc = "Use Hop cross windows with multi-windows support" })
+
+-- sourcing of lua files
+keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source the current file and run it" })
+
+-- Copilot Chat key mappings
+keymap.set("n", "<leader>ccc", ":CopilotChat<CR>", { desc = "Open chat window with optional input" })
+keymap.set("n", "<leader>cco", ":CopilotChatOpen<CR>", { desc = "Open chat window" })
+keymap.set("n", "<leader>ccx", ":CopilotChatClose<CR>", { desc = "Close chat window" })
+keymap.set("n", "<leader>cct", ":CopilotChatToggle<CR>", { desc = "Toggle chat window" })
+keymap.set("n", "<leader>ccs", ":CopilotChatStop<CR>", { desc = "Stop current copilot output" })
+keymap.set("n", "<leader>ccr", ":CopilotChatReset<CR>", { desc = "Reset chat window" })
+keymap.set("n", "<leader>ccS", ":CopilotChatSave<CR>", { desc = "Save chat history to file" })
+keymap.set("n", "<leader>ccl", ":CopilotChatLoad<CR>", { desc = "Load chat history from file" })
+keymap.set("n", "<leader>ccd", ":CopilotChatDebugInfo<CR>", { desc = "Show debug information" })
+keymap.set("n", "<leader>ccm", ":CopilotChatModels<CR>", { desc = "View and select available models" })
+keymap.set("n", "<leader>cca", ":CopilotChatAgents<CR>", { desc = "View and select available agents" })
+keymap.set(
+	{ "v", "x" },
+	"<leader>ccE",
+	":CopilotChatExplain<CR>",
+	{ desc = "Ask Copilot to explain the selected code" }
+)
+keymap.set({ "v", "x" }, "<leader>ccR", ":CopilotChatReview<CR>", { desc = "Ask Copilot to review the selected code" })
+keymap.set({ "v", "x" }, "<leader>ccF", ":CopilotChatFix<CR>", { desc = "Ask Copilot to fix the selected code" })
+keymap.set(
+	{ "v", "x" },
+	"<leader>ccO",
+	":CopilotChatOptimize<CR>",
+	{ desc = "Ask Copilot to optimize the selected code" }
+)
+keymap.set(
+	{ "v", "x" },
+	"<leader>ccD",
+	":CopilotChatDocs<CR>",
+	{ desc = "Ask Copilot to add documentation comments to the selected code" }
+)
+keymap.set(
+	{ "v", "x" },
+	"<leader>ccT",
+	":CopilotChatTests<CR>",
+	{ desc = "Ask Copilot to generate tests for the selected code" }
+)
+keymap.set(
+	{ "v", "x" },
+	"<leader>ccC",
+	":CopilotChatCommit<CR>",
+	{ desc = "Ask Copilot to write a commit message for the change" }
+)
