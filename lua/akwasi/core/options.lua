@@ -12,7 +12,8 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 
 -- line wrapping
-opt.wrap = false -- disable line wrapping
+opt.wrap = true -- enable line wrapping
+opt.linebreak = true -- enable text to move down the line, if it is affected by line wrap
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
@@ -45,3 +46,14 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- highlight yank
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlighting when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlighting-yank", {
+		clear = true,
+	}),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
