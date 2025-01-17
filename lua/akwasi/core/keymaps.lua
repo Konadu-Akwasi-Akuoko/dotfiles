@@ -65,47 +65,47 @@ keymap.set("n", "<leader>jm", "<cmd>Hop*MW <CR>", { desc = "Use Hop cross window
 -- sourcing of lua files
 keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source the current file and run it" })
 
--- Copilot Chat key mappings
-keymap.set("n", "<leader>ccc", ":CopilotChat<CR>", { desc = "Open chat window with optional input" })
-keymap.set("n", "<leader>cco", ":CopilotChatOpen<CR>", { desc = "Open chat window" })
-keymap.set("n", "<leader>ccx", ":CopilotChatClose<CR>", { desc = "Close chat window" })
-keymap.set("n", "<leader>cct", ":CopilotChatToggle<CR>", { desc = "Toggle chat window" })
-keymap.set("n", "<leader>ccs", ":CopilotChatStop<CR>", { desc = "Stop current copilot output" })
-keymap.set("n", "<leader>ccr", ":CopilotChatReset<CR>", { desc = "Reset chat window" })
-keymap.set("n", "<leader>ccS", ":CopilotChatSave<CR>", { desc = "Save chat history to file" })
-keymap.set("n", "<leader>ccl", ":CopilotChatLoad<CR>", { desc = "Load chat history from file" })
-keymap.set("n", "<leader>ccd", ":CopilotChatDebugInfo<CR>", { desc = "Show debug information" })
-keymap.set("n", "<leader>ccm", ":CopilotChatModels<CR>", { desc = "View and select available models" })
-keymap.set("n", "<leader>cca", ":CopilotChatAgents<CR>", { desc = "View and select available agents" })
-keymap.set(
-	{ "v", "x" },
-	"<leader>ccE",
-	":CopilotChatExplain<CR>",
-	{ desc = "Ask Copilot to explain the selected code" }
-)
-keymap.set({ "v", "x" }, "<leader>ccR", ":CopilotChatReview<CR>", { desc = "Ask Copilot to review the selected code" })
-keymap.set({ "v", "x" }, "<leader>ccF", ":CopilotChatFix<CR>", { desc = "Ask Copilot to fix the selected code" })
-keymap.set(
-	{ "v", "x" },
-	"<leader>ccO",
-	":CopilotChatOptimize<CR>",
-	{ desc = "Ask Copilot to optimize the selected code" }
-)
-keymap.set(
-	{ "v", "x" },
-	"<leader>ccD",
-	":CopilotChatDocs<CR>",
-	{ desc = "Ask Copilot to add documentation comments to the selected code" }
-)
-keymap.set(
-	{ "v", "x" },
-	"<leader>ccT",
-	":CopilotChatTests<CR>",
-	{ desc = "Ask Copilot to generate tests for the selected code" }
-)
-keymap.set(
-	{ "v", "x" },
-	"<leader>ccC",
-	":CopilotChatCommit<CR>",
-	{ desc = "Ask Copilot to write a commit message for the change" }
-)
+-- -- Copilot Chat key mappings
+-- keymap.set("n", "<leader>ccc", ":CopilotChat<CR>", { desc = "Open chat window with optional input" })
+-- keymap.set("n", "<leader>cco", ":CopilotChatOpen<CR>", { desc = "Open chat window" })
+-- keymap.set("n", "<leader>ccx", ":CopilotChatClose<CR>", { desc = "Close chat window" })
+-- keymap.set("n", "<leader>cct", ":CopilotChatToggle<CR>", { desc = "Toggle chat window" })
+-- keymap.set("n", "<leader>ccs", ":CopilotChatStop<CR>", { desc = "Stop current copilot output" })
+-- keymap.set("n", "<leader>ccr", ":CopilotChatReset<CR>", { desc = "Reset chat window" })
+-- keymap.set("n", "<leader>ccS", ":CopilotChatSave<CR>", { desc = "Save chat history to file" })
+-- keymap.set("n", "<leader>ccl", ":CopilotChatLoad<CR>", { desc = "Load chat history from file" })
+-- keymap.set("n", "<leader>ccd", ":CopilotChatDebugInfo<CR>", { desc = "Show debug information" })
+-- keymap.set("n", "<leader>ccm", ":CopilotChatModels<CR>", { desc = "View and select available models" })
+-- keymap.set("n", "<leader>cca", ":CopilotChatAgents<CR>", { desc = "View and select available agents" })
+-- keymap.set(
+-- 	{ "v", "x" },
+-- 	"<leader>ccE",
+-- 	":CopilotChatExplain<CR>",
+-- 	{ desc = "Ask Copilot to explain the selected code" }
+-- )
+-- keymap.set({ "v", "x" }, "<leader>ccR", ":CopilotChatReview<CR>", { desc = "Ask Copilot to review the selected code" })
+-- keymap.set({ "v", "x" }, "<leader>ccF", ":CopilotChatFix<CR>", { desc = "Ask Copilot to fix the selected code" })
+-- keymap.set(
+-- 	{ "v", "x" },
+-- 	"<leader>ccO",
+-- 	":CopilotChatOptimize<CR>",
+-- 	{ desc = "Ask Copilot to optimize the selected code" }
+-- )
+-- keymap.set(
+-- 	{ "v", "x" },
+-- 	"<leader>ccD",
+-- 	":CopilotChatDocs<CR>",
+-- 	{ desc = "Ask Copilot to add documentation comments to the selected code" }
+-- )
+-- keymap.set(
+-- 	{ "v", "x" },
+-- 	"<leader>ccT",
+-- 	":CopilotChatTests<CR>",
+-- 	{ desc = "Ask Copilot to generate tests for the selected code" }
+-- )
+-- keymap.set(
+-- 	{ "v", "x" },
+-- 	"<leader>ccC",
+-- 	":CopilotChatCommit<CR>",
+-- 	{ desc = "Ask Copilot to write a commit message for the change" }
+-- )
