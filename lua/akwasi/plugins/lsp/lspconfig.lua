@@ -31,7 +31,6 @@ return {
 				-- Buffer local mappings.
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf, silent = true }
-
 				-- set keybinds
 				opts.desc = "Show LSP references"
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
@@ -189,6 +188,7 @@ return {
 				-- configure lua to use vuejs volar
 				-- you will also need to install vue language server globally
 				lspconfig["ts_ls"].setup({
+					capabilities = capabilities,
 					init_options = {
 						plugins = {
 							{
