@@ -36,7 +36,6 @@ keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer
 
 -- buffer management
 keymap.set("n", "<leader>bd", "<cmd>bufdo bd<CR>", { desc = "Delete all buffers" }) -- delete all buffers
-keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Show all buffers with Telescope" })
 
 -- hop management
 keymap.set("n", "<leader>jj", "<cmd>HopWord <CR>", { desc = "Hop to a word" })
