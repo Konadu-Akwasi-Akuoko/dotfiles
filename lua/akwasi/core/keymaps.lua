@@ -6,7 +6,7 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps
 
 -- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+-- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
@@ -63,6 +63,9 @@ keymap.set("n", "<leader>jm", "<cmd>Hop*MW <CR>", { desc = "Use Hop cross window
 
 -- sourcing of lua files
 keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source the current file and run it" })
+
+-- Map Ctrl+s to save all files in normal and insert modes
+keymap.set({ "n" }, "<leader>w", "<cmd>wa<CR>", { desc = "Save all files" })
 
 -- -- Copilot Chat key mappings
 -- keymap.set("n", "<leader>ccc", ":CopilotChat<CR>", { desc = "Open chat window with optional input" })
