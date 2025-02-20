@@ -51,6 +51,8 @@ return {
 				basic = true,
 				---Extra mapping; `gco`, `gcO`, `gcA`
 				extra = true,
+				-- Explicitly enable visual mode mappings
+				extended = true,
 			},
 			post_hook = function() end,
 		})
