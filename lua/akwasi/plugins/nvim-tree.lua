@@ -1,14 +1,11 @@
 return {
 	"nvim-tree/nvim-tree.lua",
 	dependencies = "nvim-tree/nvim-web-devicons",
-
 	config = function()
 		local nvimtree = require("nvim-tree")
-
 		-- recommended settings from nvim-tree documentation
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
-
 		nvimtree.setup({
 			view = {
 				width = 35,
@@ -22,8 +19,8 @@ return {
 				icons = {
 					glyphs = {
 						folder = {
-							arrow_closed = "", -- arrow when folder is closed
-							arrow_open = "", -- arrow when folder is open
+							arrow_closed = "", -- arrow when folder is closed
+							arrow_open = "", -- arrow when folder is open
 						},
 					},
 				},
@@ -45,10 +42,8 @@ return {
 				ignore = false,
 			},
 		})
-
 		-- set keymaps
 		local keymap = vim.keymap -- for conciseness
-
 		keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
 		keymap.set(
 			"n",
@@ -58,5 +53,43 @@ return {
 		) -- toggle file explorer on current file
 		keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
 		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
+
+		-- Function to check if NvimTree is open
+		local function is_nvim_tree_open()
+			local buflist = vim.api.nvim_list_bufs()
+			for _, buf in ipairs(buflist) do
+				if vim.api.nvim_buf_is_valid(buf) then
+					local bufname = vim.api.nvim_buf_get_name(buf)
+					local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
+					if filetype == "NvimTree" and vim.fn.bufwinid(buf) ~= -1 then
+						return true
+					end
+				end
+			end
+			return false
+		end
+
+		-- Function to highlight current file in NvimTree
+		local function highlight_file_in_tree()
+			-- Get current buffer name
+			local bufname = vim.api.nvim_buf_get_name(0)
+			local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+
+			-- Only proceed for real files and not for NvimTree itself
+			if bufname ~= "" and filetype ~= "NvimTree" and filetype ~= "TelescopePrompt" then
+				-- Check if NvimTree is open
+				if is_nvim_tree_open() then
+					-- Use nvim-tree API to find the file
+					require("nvim-tree.api").tree.find_file(bufname)
+				end
+			end
+		end
+
+		-- Create autocommand to highlight file when buffer is entered
+		vim.api.nvim_create_autocmd({ "BufEnter" }, {
+			callback = function()
+				highlight_file_in_tree()
+			end,
+		})
 	end,
 }
