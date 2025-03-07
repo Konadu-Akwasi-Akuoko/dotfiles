@@ -1,6 +1,6 @@
 return {
 	"saghen/blink.cmp",
-	build = "cargo +nightly build --release",
+	build = "cargo build --release",
 	-- optional: provides snippets for the snippet source
 	dependencies = { "rafamadriz/friendly-snippets", "giuxtaposition/blink-cmp-copilot" },
 
@@ -63,6 +63,8 @@ return {
 				auto_show = true,
 				auto_show_delay_ms = 500,
 			},
+			-- Don't select by default, auto insert on selection
+			list = { selection = { preselect = false, auto_insert = false } },
 		},
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`

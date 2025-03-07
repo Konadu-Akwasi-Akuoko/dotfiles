@@ -68,8 +68,8 @@ keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source the c
 keymap.set({ "n" }, "<leader>w", "<cmd>wa<CR>", { desc = "Save all files" })
 
 -- Add explicit visual mode mappings for both visual and visual-line modes
-keymap.set("x", "gc", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment for visual selection" })
-keymap.set("v", "gc", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment for visual selection" })
+-- keymap.set("x", "gc", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment for visual selection" })
+-- keymap.set("v", "gc", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment for visual selection" })
 
 -- -- Copilot Chat key mappings
 -- keymap.set("n", "<leader>ccc", ":CopilotChat<CR>", { desc = "Open chat window with optional input" })

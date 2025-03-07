@@ -18,9 +18,7 @@ return {
 			padding = true,
 			---Whether the cursor should stay at its position
 			sticky = true,
-			ignore = function()
-				return ""
-			end,
+			ignore = nil,
 			---LHS of toggle mappings in NORMAL mode
 			toggler = {
 				---Line-comment toggle keymap
@@ -51,10 +49,15 @@ return {
 				basic = true,
 				---Extra mapping; `gco`, `gcO`, `gcA`
 				extra = true,
-				-- Explicitly enable visual mode mappings
-				extended = true,
 			},
-			post_hook = function() end,
+			---Function to call before (un)comment
+			-- pre_hook = function()
+			-- 	return ""
+			-- end,
+			---Function to call after (un)comment
+			post_hook = function()
+				-- vim.api.nvim_command("nohlsearch")
+			end,
 		})
 	end,
 }
