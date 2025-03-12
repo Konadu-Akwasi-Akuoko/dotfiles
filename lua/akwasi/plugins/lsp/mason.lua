@@ -53,6 +53,7 @@ return {
 				"volar",
 				-- "vuels", -- deprecated using volar instead
 				-- "tsserver", same as ts_ls
+				-- "rust_analyzer", if you are using rustaceanvim you will need to install rust_analyzer directly using rustup, cause rusta does not play well with mason.lspconfig of rust_analyzer. so install it using: `rustup component add rust-analyzer`
 			},
 		})
 
@@ -66,6 +67,7 @@ return {
 				"eslint_d", -- js linter
 				"markdownlint-cli2",
 				"markdown-toc",
+				"codelldb", -- codelldb debugger for rustaceanvim
 			},
 		})
 

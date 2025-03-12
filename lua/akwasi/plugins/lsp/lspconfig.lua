@@ -206,6 +206,34 @@ return {
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 				})
 			end,
+			["rust_analyzer"] = function()
+				lspconfig["rust_analyzer"].setup({
+					-- do not set up rust here analyzer cause, rustaceanvim does not work well with mason.lspconfig version of rust_analyzer
+					-- capabilities = capabilities,
+					-- on_attach = function(client, bufnr)
+					-- 	vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+					-- 	on_attach(client, bufnr)
+					-- end,
+					-- settings = {
+					-- 	["rust-analyzer"] = {
+					-- 		imports = {
+					-- 			granularity = {
+					-- 				group = "module",
+					-- 			},
+					-- 			prefix = "self",
+					-- 		},
+					-- 		cargo = {
+					-- 			buildScripts = {
+					-- 				enable = true,
+					-- 			},
+					-- 		},
+					-- 		procMacro = {
+					-- 			enable = true,
+					-- 		},
+					-- 	},
+					-- },
+				})
+			end,
 		})
 	end,
 }

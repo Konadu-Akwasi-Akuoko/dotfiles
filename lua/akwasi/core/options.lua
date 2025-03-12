@@ -47,6 +47,10 @@ opt.splitbelow = true -- split horizontal window to the bottom
 -- turn off swapfile
 opt.swapfile = false
 
+-- spell checker settings
+opt.spell = true
+opt.spelllang = "en_us"
+
 -- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlighting when yanking (copying) text",
