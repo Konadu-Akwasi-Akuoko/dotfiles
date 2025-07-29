@@ -4,4 +4,4 @@ My neovim setup. Plugins and key bindings.
 
 _Written in lua_
 
-![nvim config picture](./assets/neovim.png)
+![nvim config picture](./assets/superFastNvim.png)
