@@ -155,7 +155,7 @@ return {
 					updateImportsOnFileMove = { enabled = "always" },
 				},
 			},
-			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+			filetypes = { "vue" },
 		})
 
 		-- Configure Vue Language Server
