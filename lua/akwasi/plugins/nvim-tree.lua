@@ -1,17 +1,24 @@
 return {
 	"nvim-tree/nvim-tree.lua",
-	dependencies = "nvim-tree/nvim-web-devicons",
+	dependencies = {
+		"nvim-tree/nvim-web-devicons",
+	},
 	config = function()
-		local nvimtree = require("nvim-tree")
-		-- recommended settings from nvim-tree documentation
+		-- Disable netrw to ensure nvim-tree is the default file explorer
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
+
+		local nvimtree = require("nvim-tree")
 		nvimtree.setup({
+			-- Automatically find and highlight the current file in the tree
+			update_focused_file = {
+				enable = true,
+			},
 			view = {
 				width = 35,
+				-- Note: relativenumber can have a minor performance cost
 				relativenumber = true,
 			},
-			-- change folder arrow icons
 			renderer = {
 				indent_markers = {
 					enable = true,
@@ -19,77 +26,17 @@ return {
 				icons = {
 					glyphs = {
 						folder = {
-							arrow_closed = "", -- arrow when folder is closed
-							arrow_open = "", -- arrow when folder is open
+							arrow_closed = "", -- Customized: remove arrow for closed folders
+							arrow_open = "", -- Customized: remove arrow for open folders
 						},
 					},
 				},
 			},
-			-- disable window_picker for
-			-- explorer to work well with
-			-- window splits
-			actions = {
-				open_file = {
-					window_picker = {
-						enable = true,
-					},
-				},
-			},
 			filters = {
-				custom = { ".DS_Store" },
+				dotfiles = false, -- Set to false to show dotfiles like .env
+				custom = { ".DS_Store" }, -- Keep filtering out .DS_Store files
 			},
-			git = {
-				ignore = false,
-			},
-		})
-		-- set keymaps
-		local keymap = vim.keymap -- for conciseness
-		keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-		keymap.set(
-			"n",
-			"<leader>ef",
-			"<cmd>NvimTreeFindFileToggle<CR>",
-			{ desc = "Toggle file explorer on current file" }
-		) -- toggle file explorer on current file
-		keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
-		keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
-
-		-- Function to check if NvimTree is open
-		local function is_nvim_tree_open()
-			local buflist = vim.api.nvim_list_bufs()
-			for _, buf in ipairs(buflist) do
-				if vim.api.nvim_buf_is_valid(buf) then
-					local bufname = vim.api.nvim_buf_get_name(buf)
-					local filetype = vim.api.nvim_get_option_value("filetype", { buf = buf })
-					if filetype == "NvimTree" and vim.fn.bufwinid(buf) ~= -1 then
-						return true
-					end
-				end
-			end
-			return false
-		end
-
-		-- Function to highlight current file in NvimTree
-		local function highlight_file_in_tree()
-			-- Get current buffer name
-			local bufname = vim.api.nvim_buf_get_name(0)
-			local filetype = vim.api.nvim_get_option_value("filetype", { buf = 0 })
-
-			-- Only proceed for real files and not for NvimTree itself
-			if bufname ~= "" and filetype ~= "NvimTree" and filetype ~= "TelescopePrompt" then
-				-- Check if NvimTree is open
-				if is_nvim_tree_open() then
-					-- Use nvim-tree API to find the file
-					require("nvim-tree.api").tree.find_file(bufname)
-				end
-			end
-		end
-
-		-- Create autocommand to highlight file when buffer is entered
-		vim.api.nvim_create_autocmd({ "BufEnter" }, {
-			callback = function()
-				highlight_file_in_tree()
-			end,
+			-- git integration is on by default, no need for `git.ignore = false`
 		})
 	end,
 }

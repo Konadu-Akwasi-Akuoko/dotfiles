@@ -1,41 +1,44 @@
 return {
 	"folke/snacks.nvim",
+	priority = 1000,
+	lazy = false,
 	---@type snacks.Config
 	opts = {
-		animate = {
-			-- your animate configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-		image = {
-			-- your image configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
+		-- animate = {
+		-- enabled = true,
+		-- },
+		-- image = {
+		-- enabled = true,
+		-- },
 		input = {
-			-- your input configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			enabled = true,
 		},
 		scroll = {
-			-- your scroll configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			enabled = true,
 		},
 		indent = {
-			-- your indent configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			enabled = true,
 		},
 		scope = {
-			-- your scope configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			enabled = true,
 		},
 		dashboard = {
-			-- your dashboard configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
+			enabled = true,
+		},
+		lazygit = {
+			enabled = true,
+		},
+		terminal = {
+			enabled = true,
+		},
+		statuscolumn = {
+			enabled = true,
+			left = { "mark", "sign" }, -- priority of signs on the left (high to low)
+			right = { "fold", "git" }, -- priority of signs on the right (high to low)
+			folds = {
+				open = true, -- show open fold icons
+				git_hl = true, -- use Git Signs hl for fold icons
+			},
 		},
 	},
 }

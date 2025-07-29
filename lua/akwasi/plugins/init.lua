@@ -1,4 +1,10 @@
 return {
-  "nvim-lua/plenary.nvim", -- lua functions that many plugins use
-  "christoomey/vim-tmux-navigator", -- tmux & split window navigation
+	-- Utility library required by many plugins.
+	{ "nvim-lua/plenary.nvim" },
+	-- Seamless navigation between Neovim splits and Tmux panes.
+	-- This plugin must be loaded at startup to set the necessary global keymaps.
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
 }

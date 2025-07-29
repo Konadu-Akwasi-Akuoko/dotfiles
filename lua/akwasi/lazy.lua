@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
@@ -13,17 +13,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		-- {
-		-- "LazyVim/LazyVim", import = "lazyvim.plugins" },
-		-- { import = "lazyvim.plugins.extras.linting.eslint" },
-		-- { import = "lazyvim.plugins.extras.lang.java" },
-		-- { import = "plugins" },
-		-- { import = "lazyvim.plugins.extras.lang.angular" },
 		{ import = "akwasi.plugins" },
 		{ import = "akwasi.plugins.lsp" },
-		{ import = "akwasi.plugins.dap" },
+		-- { import = "akwasi.plugins.dap" },
 	},
-}, {
 	checker = {
 		enabled = true,
 		notify = false,
