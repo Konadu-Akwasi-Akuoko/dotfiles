@@ -19,13 +19,6 @@ opt.linebreak = true -- enable text to move down the line, if it is affected by 
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
--- search settings
-opt.ignorecase = true -- ignore case when searching
-opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
-
--- cursor line
-opt.cursorline = true -- highlight the current cursor line
-
 -- appearance
 
 -- turn on termguicolors for nightfly colorscheme to work
@@ -50,6 +43,7 @@ opt.swapfile = false
 -- spell checker settings
 opt.spell = true
 opt.spelllang = "en_us"
+opt.spelloptions = "camel"
 
 -- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {

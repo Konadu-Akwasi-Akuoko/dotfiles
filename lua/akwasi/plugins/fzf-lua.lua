@@ -3,28 +3,31 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
-	opts = {},
-	config = function()
-		local fzf = require("fzf-lua")
-		fzf.setup({
-			--[[ 			{ "telescope" }, ]]
-			-- Optionally override some defaults
-			--[[ winopts = {
-				preview = {
-					default = "bat",
-				},
-			}, ]]
-		})
+	cmd = "FzfLua",
+	opts = {
+		winopts = {
+			preview = {
+				-- make sure to have `bat` installed for previewing files, macos: `brew install bat`
+				default = "bat",
+			},
+		},
+		lsp = {
+			-- Customize LSP features for better experience
+			code_actions = {
+				previewer = "codeaction_native",
+				-- Use delta for better code action previews, macos: `brew install git-delta`
+				preview_pager = "delta --side-by-side --width=$FZF_PREVIEW_COLUMNS",
+			},
+			symbols = {
+				path_shorten = 1, -- Shorten path in symbols view
+			},
+		},
+	},
+	config = function(_, opts)
+		local fzf_lua = require("fzf-lua")
+		fzf_lua.setup(opts)
 
-		local keymap = vim.keymap
-		-- Replace Telescope bindings with fzf-lua
-		keymap.set("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Fuzzy find files" })
-		keymap.set("n", "<leader>fr", "<cmd>FzfLua oldfiles<cr>", { desc = "Fuzzy find recent files" })
-		keymap.set("n", "<leader>fs", "<cmd>FzfLua live_grep<cr>", { desc = "Find string in cwd" })
-		keymap.set("n", "<leader>fc", "<cmd>FzfLua grep_cword<cr>", { desc = "Find word under cursor" })
-		keymap.set("n", "<leader>bb", "<cmd>FzfLua buffers<cr>", { desc = "Show opened buffers" })
-
-		-- Git shortcuts
-		keymap.set("n", "<leader>gc", "<cmd>FzfLua git_blame<cr>", { desc = "Git changes blame" })
+		-- Register FzfLua as the UI select provider
+		fzf_lua.register_ui_select()
 	end,
 }

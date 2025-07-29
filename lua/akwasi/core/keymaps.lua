@@ -1,136 +1,319 @@
 -- set leader key to space
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-local keymap = vim.keymap -- for conciseness
+local keymap = vim.keymap.set
 
--- General Keymaps
+-- General
+keymap("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights", silent = true, noremap = true })
+keymap("n", "x", '"_x', { desc = "Delete character without yanking", silent = true, noremap = true })
+keymap("n", "<leader>+", "<C-a>", { desc = "Increment number", silent = true, noremap = true })
+keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number", silent = true, noremap = true })
+keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Save current file", silent = true, noremap = true })
+keymap("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file", silent = true, noremap = true })
 
--- use jk to exit insert mode
--- keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
-
--- clear search highlights
-keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
-
--- delete single character without copying into register
-keymap.set("n", "x", '"_x')
-
--- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
-keymap.set("n", "<leader>-", "<C-x>", { desc = "Decrement number" }) -- decrement
-
--- window management
-keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
-keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
-keymap.set("n", "<leader>ss", "<C-w>x", { desc = "Swap windows" }) -- swap windows
-keymap.set("n", "<leader>sw", "<cmd>set wrap<CR>", { desc = "Set soft wrap on current window" }) -- Set soft wrap on current window
-keymap.set("n", "<leader>sn", "<cmd>set nowrap<CR>", { desc = "Set no soft wrap on current window" }) -- Set no soft wrap on current window
-
--- tab management
-keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
-keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
-keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
-keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
-
--- buffer management
-keymap.set("n", "<leader>bd", "<cmd>bufdo bd<CR>", { desc = "Delete all buffers" }) -- delete all buffers
-
--- hop management
-keymap.set("n", "<leader>jj", "<cmd>HopWord <CR>", { desc = "Hop to a word" })
-keymap.set("n", "<leader>jc", "<cmd>HopCamelCase <CR>", { desc = "Hop to a camelCase word" })
-keymap.set("n", "<leader>jb", "<cmd>HopChar1 <CR>", { desc = "Hop to any character in the current buffer" })
-keymap.set("n", "<leader>jg", "<cmd>HopChar2 <CR>", { desc = "Hop to any bigrams in the current buffer" })
-keymap.set(
+-- Nvim Tree, File Explorer
+keymap("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer", silent = true, noremap = true })
+keymap(
 	"n",
-	"<leader>jp",
-	"<cmd>HopPattern <CR>",
-	{ desc = "Hop to an arbitrary search akin to / and go to any occurrences" }
+	"<leader>ef",
+	"<cmd>NvimTreeFindFileToggle<CR>",
+	{ desc = "Toggle file explorer on current file", silent = true, noremap = true }
 )
-keymap.set("n", "<leader>jl", "<cmd>HopLine <CR>", { desc = "Hop to any line" })
-keymap.set("n", "<leader>js", "<cmd>HopLineStart <CR>", { desc = "Hop to any line start" })
-keymap.set("n", "<leader>ja", "<cmd>HopAnywhere <CR>", { desc = "Hop to anywhere" })
-keymap.set("n", "<leader>jt", "<cmd>HopNodes <CR>", { desc = "Hop to treesitter nodes" })
-keymap.set("n", "<leader>jv", "<cmd>HopPaste <CR>", { desc = "Paste text in the hinted position without jumping" })
-keymap.set(
+keymap(
 	"n",
-	"<leader>jy",
-	"<cmd>HopYankChar1 <CR>",
-	{ desc = "Yank the text between two hinted position without jumping" }
+	"<leader>ec",
+	"<cmd>NvimTreeCollapse<CR>",
+	{ desc = "Collapse file explorer", silent = true, noremap = true }
 )
-keymap.set("n", "<leader>jm", "<cmd>Hop*MW <CR>", { desc = "Use Hop cross windows with multi-windows support" })
+keymap("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer", silent = true, noremap = true })
 
--- sourcing of lua files
-keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source the current file and run it" })
-
--- keymap.set leader+w to save all files in normal and mode
-keymap.set("n", "<leader>w", "<cmd>wa<CR>", { desc = "Save all files" })
-
--- Nvim DAP
-keymap.set("n", "<Leader>dl", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Debugger step into" })
-keymap.set("n", "<Leader>dj", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Debugger step over" })
-keymap.set("n", "<Leader>dk", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Debugger step out" })
-keymap.set("n", "<Leader>dc", "<cmd>lua require'dap'.continue()<CR>", { desc = "Debugger continue" })
-keymap.set("n", "<Leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Debugger toggle breakpoint" })
-keymap.set(
+-- Trouble
+keymap(
 	"n",
-	"<Leader>dd",
-	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-	{ desc = "Debugger set conditional breakpoint" }
+	"<leader>xw",
+	"<cmd>Trouble diagnostics toggle<CR>",
+	{ desc = "Workspace Diagnostics (Trouble)", silent = true, noremap = true }
 )
-keymap.set("n", "<Leader>de", "<cmd>lua require'dap'.terminate()<CR>", { desc = "Debugger reset" })
-keymap.set("n", "<Leader>dr", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Debugger run last" })
-keymap.set("n", "<Leader>du", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "Toggle Debug UI" })
+keymap(
+	"n",
+	"<leader>xd",
+	"<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+	{ desc = "Document Diagnostics (Trouble)", silent = true, noremap = true }
+)
+keymap(
+	"n",
+	"<leader>xq",
+	"<cmd>Trouble quickfix toggle<CR>",
+	{ desc = "Quickfix List (Trouble)", silent = true, noremap = true }
+)
+keymap(
+	"n",
+	"<leader>xl",
+	"<cmd>Trouble loclist toggle<CR>",
+	{ desc = "Location List (Trouble)", silent = true, noremap = true }
+)
 
--- rustaceanvim
-keymap.set("n", "<Leader>dt", "<cmd>lua vim.cmd('RustLsp testables')<CR>", { desc = "Debugger testables" })
+-- Buffer Management
+local function delete_unmodified_buffers()
+	local bufs = vim.api.nvim_list_bufs()
+	local bufnrs_to_delete = {}
+	for _, b in ipairs(bufs) do
+		if vim.bo[b].buflisted and not vim.bo[b].modified then
+			table.insert(bufnrs_to_delete, b)
+		end
+	end
+	if #bufnrs_to_delete > 0 then
+		vim.cmd("bdelete " .. table.concat(bufnrs_to_delete, " "))
+	else
+		vim.notify("No unmodified buffers to delete.", vim.log.levels.INFO)
+	end
+end
+keymap(
+	"n",
+	"<leader>bd",
+	delete_unmodified_buffers,
+	{ desc = "Delete all unmodified buffers", silent = true, noremap = true }
+)
+keymap("n", "<leader>bD", "<cmd>bdelete<CR>", { desc = "Delete Current Buffer", silent = true, noremap = true })
 
--- Add explicit visual mode mappings for both visual and visual-line modes
--- keymap.set("x", "gc", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment for visual selection" })
--- keymap.set("v", "gc", "<Plug>(comment_toggle_linewise_visual)", { desc = "Toggle comment for visual selection" })
+-- Window Management
+keymap("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically", silent = true, noremap = true })
+keymap("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally", silent = true, noremap = true })
+keymap("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size", silent = true, noremap = true })
+keymap("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split", silent = true, noremap = true })
+keymap("n", "<leader>sw", "<cmd>set wrap<CR>", { desc = "Enable soft wrap", silent = true, noremap = true })
+keymap("n", "<leader>sn", "<cmd>set nowrap<CR>", { desc = "Disable soft wrap", silent = true, noremap = true })
 
--- -- Copilot Chat key mappings
--- keymap.set("n", "<leader>ccc", ":CopilotChat<CR>", { desc = "Open chat window with optional input" })
--- keymap.set("n", "<leader>cco", ":CopilotChatOpen<CR>", { desc = "Open chat window" })
--- keymap.set("n", "<leader>ccx", ":CopilotChatClose<CR>", { desc = "Close chat window" })
--- keymap.set("n", "<leader>cct", ":CopilotChatToggle<CR>", { desc = "Toggle chat window" })
--- keymap.set("n", "<leader>ccs", ":CopilotChatStop<CR>", { desc = "Stop current copilot output" })
--- keymap.set("n", "<leader>ccr", ":CopilotChatReset<CR>", { desc = "Reset chat window" })
--- keymap.set("n", "<leader>ccS", ":CopilotChatSave<CR>", { desc = "Save chat history to file" })
--- keymap.set("n", "<leader>ccl", ":CopilotChatLoad<CR>", { desc = "Load chat history from file" })
--- keymap.set("n", "<leader>ccd", ":CopilotChatDebugInfo<CR>", { desc = "Show debug information" })
--- keymap.set("n", "<leader>ccm", ":CopilotChatModels<CR>", { desc = "View and select available models" })
--- keymap.set("n", "<leader>cca", ":CopilotChatAgents<CR>", { desc = "View and select available agents" })
--- keymap.set(
--- 	{ "v", "x" },
--- 	"<leader>ccE",
--- 	":CopilotChatExplain<CR>",
--- 	{ desc = "Ask Copilot to explain the selected code" }
--- )
--- keymap.set({ "v", "x" }, "<leader>ccR", ":CopilotChatReview<CR>", { desc = "Ask Copilot to review the selected code" })
--- keymap.set({ "v", "x" }, "<leader>ccF", ":CopilotChatFix<CR>", { desc = "Ask Copilot to fix the selected code" })
--- keymap.set(
--- 	{ "v", "x" },
--- 	"<leader>ccO",
--- 	":CopilotChatOptimize<CR>",
--- 	{ desc = "Ask Copilot to optimize the selected code" }
--- )
--- keymap.set(
--- 	{ "v", "x" },
--- 	"<leader>ccD",
--- 	":CopilotChatDocs<CR>",
--- 	{ desc = "Ask Copilot to add documentation comments to the selected code" }
--- )
--- keymap.set(
--- 	{ "v", "x" },
--- 	"<leader>ccT",
--- 	":CopilotChatTests<CR>",
--- 	{ desc = "Ask Copilot to generate tests for the selected code" }
--- )
--- keymap.set(
--- 	{ "v", "x" },
--- 	"<leader>ccC",
--- 	":CopilotChatCommit<CR>",
--- 	{ desc = "Ask Copilot to write a commit message for the change" }
--- )
+-- Tab Management
+keymap("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab", silent = true, noremap = true })
+keymap("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab", silent = true, noremap = true })
+keymap("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab", silent = true, noremap = true })
+keymap("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab", silent = true, noremap = true })
+keymap(
+	"n",
+	"<leader>tf",
+	"<cmd>tabnew %<CR>",
+	{ desc = "Open current buffer in new tab", silent = true, noremap = true }
+)
+
+-- Lazygit (via snacks.nvim)
+keymap("n", "<leader>gg", function()
+	require("snacks").lazygit.open()
+end, { desc = "Open Lazygit", silent = true, noremap = true })
+keymap("n", "<leader>gl", function()
+	require("snacks").lazygit.log()
+end, { desc = "Open Lazygit Log", silent = true, noremap = true })
+keymap("n", "<leader>gf", function()
+	require("snacks").lazygit.log_file()
+end, { desc = "Open Lazygit Log for Current File", silent = true, noremap = true })
+
+-- Terminal (via snacks.nvim)
+keymap("n", "<leader>tt", function()
+	require("snacks").terminal.toggle(vim.o.shell)
+end, { desc = "Toggle Floating Terminal", silent = true, noremap = true })
+keymap("n", "<leader>ts", function()
+	require("snacks").terminal.toggle()
+end, { desc = "Toggle Split Terminal", silent = true, noremap = true })
+
+-- Hop Management
+keymap("n", "<leader>j", "<nop>", { desc = "Hop Motion", silent = true, noremap = true })
+keymap("n", "<leader>jw", "<cmd>HopWord<CR>", { desc = "Hop to a word", silent = true, noremap = true })
+keymap("n", "<leader>jc", "<cmd>HopCamelCase<CR>", { desc = "Hop to a camelCase word", silent = true, noremap = true })
+keymap("n", "<leader>jb", "<cmd>HopChar1<CR>", { desc = "Hop to any character", silent = true, noremap = true })
+keymap("n", "<leader>jg", "<cmd>HopChar2<CR>", { desc = "Hop to any bigram", silent = true, noremap = true })
+keymap("n", "<leader>jp", "<cmd>HopPattern<CR>", { desc = "Hop via pattern search", silent = true, noremap = true })
+keymap("n", "<leader>jl", "<cmd>HopLine<CR>", { desc = "Hop to any line", silent = true, noremap = true })
+keymap("n", "<leader>js", "<cmd>HopLineStart<CR>", { desc = "Hop to any line start", silent = true, noremap = true })
+keymap("n", "<leader>ja", "<cmd>HopAnywhere<CR>", { desc = "Hop to anywhere", silent = true, noremap = true })
+keymap("n", "<leader>jt", "<cmd>HopNodes<CR>", { desc = "Hop to treesitter nodes", silent = true, noremap = true })
+keymap("n", "<leader>jv", "<cmd>HopPaste<CR>", { desc = "Paste at hinted position", silent = true, noremap = true })
+keymap("n", "<leader>jy", "<cmd>HopYankChar1<CR>", { desc = "Yank to hinted position", silent = true, noremap = true })
+keymap("n", "<leader>jm", "<cmd>Hop*MW<CR>", { desc = "Hop across multiple windows", silent = true, noremap = true })
+
+-- Linter & Formatter
+keymap("n", "<leader>ll", function()
+	require("lint").try_lint()
+end, { desc = "Trigger linting", silent = true, noremap = true })
+keymap("n", "<leader>mp", function()
+	require("conform").format({ lsp_fallback = true, async = false, timeout_ms = 1000 })
+end, { desc = "Format file or range", silent = true, noremap = true })
+
+-- FZF-Lua keymaps
+keymap("n", "<leader>f", "<nop>", { desc = "Fuzzy Find", silent = true, noremap = true })
+keymap("n", "<leader>ff", "<cmd>FzfLua files<cr>", { desc = "Find files", silent = true, noremap = true })
+keymap("n", "<leader>fr", "<cmd>FzfLua oldfiles<cr>", { desc = "Find recent files", silent = true, noremap = true })
+keymap(
+	"n",
+	"<leader>fg",
+	"<cmd>FzfLua live_grep<cr>",
+	{ desc = "Find string in project (Grep)", silent = true, noremap = true }
+)
+keymap(
+	"n",
+	"<leader>fw",
+	"<cmd>FzfLua grep_cword<cr>",
+	{ desc = "Find word under cursor", silent = true, noremap = true }
+)
+keymap("n", "<leader>fb", "<cmd>FzfLua buffers<cr>", { desc = "Find open buffers", silent = true, noremap = true })
+keymap("n", "<leader>gc", "<cmd>FzfLua git_blame<cr>", { desc = "Git blame", silent = true, noremap = true })
+keymap(
+	"n",
+	"<leader>ds",
+	"<cmd>FzfLua lsp_document_symbols<cr>",
+	{ desc = "Document symbols", silent = true, noremap = true }
+)
+keymap(
+	"n",
+	"<leader>dw",
+	"<cmd>FzfLua diagnostics_workspace<cr>",
+	{ desc = "Workspace diagnostics", silent = true, noremap = true }
+)
+
+-- Gitsigns keymaps
+keymap("n", "]h", function()
+	require("gitsigns").next_hunk()
+end, { desc = "Next Hunk", silent = true, noremap = true })
+keymap("n", "[h", function()
+	require("gitsigns").prev_hunk()
+end, { desc = "Prev Hunk", silent = true, noremap = true })
+keymap("n", "<leader>gs", function()
+	require("gitsigns").stage_hunk()
+end, { desc = "Stage hunk", silent = true, noremap = true })
+keymap("n", "<leader>gr", function()
+	require("gitsigns").reset_hunk()
+end, { desc = "Reset hunk", silent = true, noremap = true })
+keymap("n", "<leader>gS", function()
+	require("gitsigns").stage_buffer()
+end, { desc = "Stage buffer", silent = true, noremap = true })
+keymap("n", "<leader>grb", function()
+	require("gitsigns").reset_buffer()
+end, { desc = "Reset buffer", silent = true, noremap = true })
+keymap("n", "<leader>gu", function()
+	require("gitsigns").undo_stage_hunk()
+end, { desc = "Undo stage hunk", silent = true, noremap = true })
+keymap("n", "<leader>gp", function()
+	require("gitsigns").preview_hunk()
+end, { desc = "Preview hunk", silent = true, noremap = true })
+keymap("n", "<leader>gb", function()
+	require("gitsigns").blame_line({ full = true })
+end, { desc = "Blame line", silent = true, noremap = true })
+keymap("n", "<leader>gB", function()
+	require("gitsigns").toggle_current_line_blame()
+end, { desc = "Toggle line blame", silent = true, noremap = true })
+keymap("n", "<leader>gdf", function()
+	require("gitsigns").diffthis()
+end, { desc = "Diff this", silent = true, noremap = true })
+keymap("n", "<leader>gD", function()
+	require("gitsigns").diffthis("~")
+end, { desc = "Diff this ~", silent = true, noremap = true })
+keymap("v", "<leader>gs", function()
+	require("gitsigns").stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, { desc = "Stage hunk", silent = true, noremap = true })
+keymap("v", "<leader>gr", function()
+	require("gitsigns").reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+end, { desc = "Reset hunk", silent = true, noremap = true })
+keymap(
+	{ "o", "x" },
+	"ih",
+	":<C-U>Gitsigns select_hunk<CR>",
+	{ desc = "Select git hunk", silent = true, noremap = true }
+)
+
+-- Spectre keymaps
+keymap("n", "<leader>s", "<nop>", { desc = "Search / Spectre/ Split", silent = true, noremap = true })
+keymap("n", "<leader>ss", "<cmd>Spectre<CR>", { desc = "Open Spectre (Find & Replace)", silent = true, noremap = true })
+keymap("n", "<leader>sc", function()
+	require("spectre").open_visual({ select_word = true })
+end, { desc = "Search current word", silent = true, noremap = true })
+keymap("n", "<leader>sp", function()
+	require("spectre").open_file_search({ select_word = true })
+end, { desc = "Search in current file", silent = true, noremap = true })
+
+-- LSP Keymaps
+local lsp_augroup = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true })
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = lsp_augroup,
+	callback = function(ev)
+		local lsp_opts = { buffer = ev.buf, silent = true, noremap = true }
+
+		keymap(
+			"n",
+			"K",
+			vim.lsp.buf.hover,
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Documentation for Cursor" })
+		)
+		keymap(
+			"n",
+			"gd",
+			"<cmd>FzfLua lsp_definitions<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Go to Definition" })
+		)
+		keymap(
+			"n",
+			"gt",
+			"<cmd>FzfLua lsp_type_definitions<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Go to Type Definition" })
+		)
+		keymap(
+			"n",
+			"gR",
+			"<cmd>FzfLua lsp_references<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show References" })
+		)
+		keymap(
+			"n",
+			"gi",
+			"<cmd>FzfLua lsp_implementations<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Implementations" })
+		)
+		keymap("n", "<leader>rn", vim.lsp.buf.rename, vim.tbl_extend("force", lsp_opts, { desc = "LSP: Smart Rename" }))
+		keymap(
+			{ "n", "v" },
+			"<leader>ca",
+			"<cmd>FzfLua lsp_code_actions<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Code Actions" })
+		)
+		keymap("n", "<leader>rs", ":LspRestart<CR>", vim.tbl_extend("force", lsp_opts, { desc = "LSP: Restart LSP" }))
+
+		-- Diagnostics
+		keymap(
+			"n",
+			"<leader>d",
+			vim.diagnostic.open_float,
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Line Diagnostics" })
+		)
+		keymap(
+			"n",
+			"<leader>D",
+			"<cmd>FzfLua diagnostics_document<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Buffer Diagnostics" })
+		)
+		keymap(
+			"n",
+			"[d",
+			vim.diagnostic.goto_prev,
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Go to Previous Diagnostic" })
+		)
+		keymap(
+			"n",
+			"]d",
+			vim.diagnostic.goto_next,
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Go to Next Diagnostic" })
+		)
+
+		-- Spell checking via FZF
+		keymap(
+			"n",
+			"<leader>cm",
+			"<cmd>FzfLua spellcheck<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Misspelled Words" })
+		)
+		keymap(
+			"n",
+			"<leader>cs",
+			"<cmd>FzfLua spell_suggest<CR>",
+			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Spelling Suggestions" })
+		)
+	end,
+})
