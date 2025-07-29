@@ -9,7 +9,7 @@ keymap("n", "<leader>nh", "<cmd>nohl<CR>", { desc = "Clear search highlights", s
 keymap("n", "x", '"_x', { desc = "Delete character without yanking", silent = true, noremap = true })
 keymap("n", "<leader>+", "<C-a>", { desc = "Increment number", silent = true, noremap = true })
 keymap("n", "<leader>-", "<C-x>", { desc = "Decrement number", silent = true, noremap = true })
-keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Save current file", silent = true, noremap = true })
+keymap("n", "<leader>w", "<cmd>wa<CR>", { desc = "Save current file", silent = true, noremap = true })
 keymap("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Source current file", silent = true, noremap = true })
 
 -- Nvim Tree, File Explorer
