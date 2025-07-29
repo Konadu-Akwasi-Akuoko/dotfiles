@@ -7,7 +7,7 @@ return {
 		ensure_installed = {
 
 			-- Formatters
-			"prettier",
+			"prettierd",
 			"stylua",
 			"biome",
 
