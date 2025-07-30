@@ -33,7 +33,8 @@ return {
 				},
 			},
 			filters = {
-				dotfiles = false, -- Set to false to show dotfiles like .env
+				dotfiles = false, -- Show dotfiles like .env
+				git_ignored = false, -- Show git ignored files
 				custom = { ".DS_Store" }, -- Keep filtering out .DS_Store files
 			},
 			-- git integration is on by default, no need for `git.ignore = false`
