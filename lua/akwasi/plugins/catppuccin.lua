@@ -30,11 +30,11 @@ return {
 			}
 		end,
 	},
-	config = function(_, opts)
-		require("catppuccin").setup(opts)
-		vim.cmd.colorscheme("catppuccin")
-
-		-- Set cursor options after colorscheme is loaded
-		vim.opt.guicursor = "n-v:block-Cursor/lCursor,i-ci-ve:ver25-iCursor/lCursor,r-cr-o:hor20"
-	end,
+	-- config = function(_, opts)
+	-- 	require("catppuccin").setup(opts)
+	-- 	vim.cmd.colorscheme("catppuccin")
+	--
+	-- 	-- Set cursor options after colorscheme is loaded
+	-- 	vim.opt.guicursor = "n-v:block-Cursor/lCursor,i-ci-ve:ver25-iCursor/lCursor,r-cr-o:hor20"
+	-- end,
 }
