@@ -9,6 +9,10 @@ return {
 		local ts = require("nvim-treesitter.configs")
 
 		ts.setup({
+			modules = {},
+			sync_install = false,
+			ignore_install = {},
+			auto_install = true,
 			ensure_installed = {
 				-- Core languages
 				"bash",
@@ -23,8 +27,8 @@ return {
 				"javascript",
 				"json",
 				"lua",
-				"markdown",
-				"markdown_inline",
+				"markdown", -- Required for CodeCompanion
+				"markdown_inline", -- Required for CodeCompanion
 				"prisma",
 				"python",
 				"query",

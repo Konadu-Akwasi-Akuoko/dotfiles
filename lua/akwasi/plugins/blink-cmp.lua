@@ -1,7 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	-- optional: provides snippets for the snippet source
-	dependencies = { "rafamadriz/friendly-snippets" },
+	dependencies = { "rafamadriz/friendly-snippets", "giuxtaposition/blink-cmp-copilot" },
 
 	-- use a release tag to download pre-built binaries
 	version = "1.*",
@@ -75,13 +75,32 @@ return {
 				auto_show_delay_ms = 500,
 			},
 			-- Do not select by default, you need to manually click on enter to accept the completion
-			list = { selection = { preselect = false, auto_insert = false } },
+			list = { selection = { preselect = true, auto_insert = false } },
 		},
 
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
+			default = { "lsp", "path", "snippets", "buffer", "copilot" },
+			-- add custom providers here, we added copilot integration
+			providers = {
+				copilot = {
+					name = "copilot",
+					module = "blink-cmp-copilot",
+					score_offset = 100,
+					async = true,
+					-- copilot kind icons
+					transform_items = function(_, items)
+						local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+						local kind_idx = #CompletionItemKind + 1
+						CompletionItemKind[kind_idx] = "Copilot"
+						for _, item in ipairs(items) do
+							item.kind = kind_idx
+						end
+						return items
+					end,
+				},
+			},
 		},
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance

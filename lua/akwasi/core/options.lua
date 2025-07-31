@@ -45,6 +45,12 @@ opt.spell = true
 opt.spelllang = "en_us"
 opt.spelloptions = "camel"
 
+-- Set up folding to always be enabled but open by default
+vim.opt.foldenable = true -- Enable folding
+vim.opt.foldmethod = "indent" -- Use indent-based folding (reliable for all files)
+vim.opt.foldlevelstart = 99 -- Start with all folds open
+vim.opt.foldlevel = 99 -- Keep folds open by default
+
 -- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlighting when yanking (copying) text",

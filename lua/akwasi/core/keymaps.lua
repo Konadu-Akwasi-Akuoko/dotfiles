@@ -315,5 +315,109 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			"<cmd>FzfLua spell_suggest<CR>",
 			vim.tbl_extend("force", lsp_opts, { desc = "LSP: Show Spelling Suggestions" })
 		)
+
+		keymap("i", "<Tab>", function()
+			if require("copilot.suggestion").is_visible() then
+				require("copilot.suggestion").accept()
+			else
+				vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Tab>", true, false, true), "n", false)
+			end
+		end, {
+			silent = true,
+			desc = "Accept Copilot suggestion or fallback to Tab",
+		})
+
+		-- CodeCompanion keymaps (add this section to your keymaps file)
+		keymap("n", "<leader>c", "<nop>", { desc = "CodeCompanion / LSP", silent = true, noremap = true })
+
+		-- Main CodeCompanion functions
+		keymap(
+			{ "n", "v" },
+			"<leader>cc",
+			"<cmd>CodeCompanionChat Toggle<CR>",
+			{ desc = "CodeCompanion: Toggle Chat", silent = true, noremap = true }
+		)
+		keymap(
+			{ "n", "v" },
+			"<leader>cp",
+			"<cmd>CodeCompanionActions<CR>",
+			{ desc = "CodeCompanion: Action Palette", silent = true, noremap = true }
+		)
+
+		-- Inline assistance
+		keymap(
+			{ "n", "v" },
+			"<leader>ci",
+			"<cmd>CodeCompanion<CR>",
+			{ desc = "CodeCompanion: Inline Assistant", silent = true, noremap = true }
+		)
+
+		-- Chat functions
+		keymap(
+			"n",
+			"<leader>cn",
+			"<cmd>CodeCompanionChat<CR>",
+			{ desc = "CodeCompanion: New Chat", silent = true, noremap = true }
+		)
+		keymap(
+			"v",
+			"<leader>ca",
+			"<cmd>CodeCompanionChat Add<CR>",
+			{ desc = "CodeCompanion: Add Selection to Chat", silent = true, noremap = true }
+		)
+
+		-- Quick actions with prompt library
+		keymap(
+			{ "n", "v" },
+			"<leader>ce",
+			"<cmd>CodeCompanion /explain<CR>",
+			{ desc = "CodeCompanion: Explain Code", silent = true, noremap = true }
+		)
+		keymap(
+			{ "n", "v" },
+			"<leader>cf",
+			"<cmd>CodeCompanion /fix<CR>",
+			{ desc = "CodeCompanion: Fix Code", silent = true, noremap = true }
+		)
+		keymap(
+			{ "n", "v" },
+			"<leader>co",
+			"<cmd>CodeCompanion /optimize<CR>",
+			{ desc = "CodeCompanion: Optimize Code", silent = true, noremap = true }
+		)
+
+		-- Utility
+		keymap("n", "<leader>cP", function()
+			-- Paste image from clipboard (requires img-clip.nvim)
+			vim.cmd("PasteImage")
+		end, { desc = "CodeCompanion: Paste Image for Vision", silent = true, noremap = true })
+
+		-- Command line abbreviation for quick access
+		vim.cmd([[cab cc CodeCompanion]])
+
+		-- Line number toggle (add this to your keymaps file)
+		keymap("n", "<leader>tn", function()
+			if vim.wo.relativenumber then
+				vim.wo.relativenumber = false
+				vim.wo.number = true
+				vim.notify("Switched to absolute line numbers", vim.log.levels.INFO)
+			else
+				vim.wo.relativenumber = true
+				vim.wo.number = true
+				vim.notify("Switched to relative line numbers", vim.log.levels.INFO)
+			end
+		end, { desc = "Toggle relative/absolute line numbers", silent = true, noremap = true })
+
+		-- Fold toggle (add this to your keymaps file)
+		keymap("n", "<leader>tf", function()
+			if vim.wo.foldenable then
+				vim.wo.foldenable = false
+				vim.notify("Folds disabled", vim.log.levels.INFO)
+			else
+				vim.wo.foldenable = true
+				vim.wo.foldlevel = 99 -- Keep folds open when re-enabling
+				vim.notify("Folds enabled (all open)", vim.log.levels.INFO)
+			end
+		end, { desc = "Toggle code folding on/off", silent = true, noremap = true })
 	end,
 })
