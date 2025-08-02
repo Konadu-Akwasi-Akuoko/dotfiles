@@ -51,6 +51,9 @@ vim.opt.foldmethod = "indent" -- Use indent-based folding (reliable for all file
 vim.opt.foldlevelstart = 99 -- Start with all folds open
 vim.opt.foldlevel = 99 -- Keep folds open by default
 
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3
+
 -- highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlighting when yanking (copying) text",

@@ -15,7 +15,7 @@ A comprehensive and feature-rich Neovim setup optimized for efficient developmen
 - Code formatting with Conform.nvim
 - Terminal integration and a complete development environment
 - Beautiful colorschemes (Catppuccin, Tokyo Night)
-- Code Companion AI assistance
+- Avante.nvim AI assistance with Copilot integration
 
 ## Plugin List
 
@@ -60,13 +60,13 @@ This configuration includes the following plugins:
 - **[blink.cmp](https://github.com/saghen/blink.cmp)** - Fast completion engine with Rust fuzzy matching
 - **[friendly-snippets](https://github.com/rafamadriz/friendly-snippets)** - Collection of snippets for blink.cmp
 - **[blink-cmp-copilot](https://github.com/giuxtaposition/blink-cmp-copilot)** - GitHub Copilot integration for blink.cmp
+- **[blink-cmp-avante](https://github.com/Kaiser-Yang/blink-cmp-avante)** - Avante integration for blink.cmp
 - **[copilot.lua](https://github.com/zbirenbaum/copilot.lua)** - GitHub Copilot integration with custom keymaps
-- **[codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)** - AI code assistance with Copilot backend
+- **[avante.nvim](https://github.com/yetone/avante.nvim)** - AI code assistance with Copilot integration
 
-### Code Companion Enhanced Plugins
+### Avante Enhanced Plugins
 
 - **[render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)** - Markdown rendering for better chat buffer display
-- **[mini.diff](https://github.com/echasnovski/mini.diff)** - Better diff visualization for inline edits
 - **[img-clip.nvim](https://github.com/HakonHarnes/img-clip.nvim)** - Image clipboard support for vision models
 
 ### Code Editing & Navigation

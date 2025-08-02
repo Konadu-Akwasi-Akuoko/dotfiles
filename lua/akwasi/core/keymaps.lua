@@ -327,73 +327,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			desc = "Accept Copilot suggestion or fallback to Tab",
 		})
 
-		-- CodeCompanion keymaps (add this section to your keymaps file)
-		keymap("n", "<leader>c", "<nop>", { desc = "CodeCompanion / LSP", silent = true, noremap = true })
-
-		-- Main CodeCompanion functions
-		keymap(
-			{ "n", "v" },
-			"<leader>cc",
-			"<cmd>CodeCompanionChat Toggle<CR>",
-			{ desc = "CodeCompanion: Toggle Chat", silent = true, noremap = true }
-		)
-		keymap(
-			{ "n", "v" },
-			"<leader>cp",
-			"<cmd>CodeCompanionActions<CR>",
-			{ desc = "CodeCompanion: Action Palette", silent = true, noremap = true }
-		)
-
-		-- Inline assistance
-		keymap(
-			{ "n", "v" },
-			"<leader>ci",
-			"<cmd>CodeCompanion<CR>",
-			{ desc = "CodeCompanion: Inline Assistant", silent = true, noremap = true }
-		)
-
-		-- Chat functions
-		keymap(
-			"n",
-			"<leader>cn",
-			"<cmd>CodeCompanionChat<CR>",
-			{ desc = "CodeCompanion: New Chat", silent = true, noremap = true }
-		)
-		keymap(
-			"v",
-			"<leader>ca",
-			"<cmd>CodeCompanionChat Add<CR>",
-			{ desc = "CodeCompanion: Add Selection to Chat", silent = true, noremap = true }
-		)
-
-		-- Quick actions with prompt library
-		keymap(
-			{ "n", "v" },
-			"<leader>ce",
-			"<cmd>CodeCompanion /explain<CR>",
-			{ desc = "CodeCompanion: Explain Code", silent = true, noremap = true }
-		)
-		keymap(
-			{ "n", "v" },
-			"<leader>cf",
-			"<cmd>CodeCompanion /fix<CR>",
-			{ desc = "CodeCompanion: Fix Code", silent = true, noremap = true }
-		)
-		keymap(
-			{ "n", "v" },
-			"<leader>co",
-			"<cmd>CodeCompanion /optimize<CR>",
-			{ desc = "CodeCompanion: Optimize Code", silent = true, noremap = true }
-		)
-
-		-- Utility
-		keymap("n", "<leader>cP", function()
-			-- Paste image from clipboard (requires img-clip.nvim)
-			vim.cmd("PasteImage")
-		end, { desc = "CodeCompanion: Paste Image for Vision", silent = true, noremap = true })
-
-		-- Command line abbreviation for quick access
-		vim.cmd([[cab cc CodeCompanion]])
+		-- Avante AI Assistant keymaps
+		keymap("n", "<leader>a", "<nop>", { desc = "Avante AI", silent = true, noremap = true })
+		
+		-- Core Avante functions
+		keymap("n", "<leader>aa", "<cmd>AvanteAsk<CR>", { desc = "Avante: Ask AI", silent = true, noremap = true })
+		keymap("n", "<leader>ac", "<cmd>AvanteChat<CR>", { desc = "Avante: Chat", silent = true, noremap = true })
+		keymap("n", "<leader>an", "<cmd>AvanteChatNew<CR>", { desc = "Avante: New chat", silent = true, noremap = true })
+		keymap("n", "<leader>at", "<cmd>AvanteToggle<CR>", { desc = "Avante: Toggle sidebar", silent = true, noremap = true })
+		keymap("n", "<leader>af", "<cmd>AvanteFocus<CR>", { desc = "Avante: Focus sidebar", silent = true, noremap = true })
+		
+		-- History and management
+		keymap("n", "<leader>ah", "<cmd>AvanteHistory<CR>", { desc = "Avante: History", silent = true, noremap = true })
+		keymap("n", "<leader>ax", "<cmd>AvanteClear<CR>", { desc = "Avante: Clear history", silent = true, noremap = true })
+		keymap("n", "<leader>ar", "<cmd>AvanteRefresh<CR>", { desc = "Avante: Refresh", silent = true, noremap = true })
+		keymap("n", "<leader>as", "<cmd>AvanteStop<CR>", { desc = "Avante: Stop request", silent = true, noremap = true })
+		
+		-- Code editing and utilities
+		keymap("n", "<leader>ae", "<cmd>AvanteEdit<CR>", { desc = "Avante: Edit code", silent = true, noremap = true })
+		keymap("n", "<leader>ab", "<cmd>AvanteBuild<CR>", { desc = "Avante: Build dependencies", silent = true, noremap = true })
+		keymap("n", "<leader>am", "<cmd>AvanteModels<CR>", { desc = "Avante: Models list", silent = true, noremap = true })
+		keymap("n", "<leader>ap", "<cmd>AvanteSwitchProvider<CR>", { desc = "Avante: Switch provider", silent = true, noremap = true })
+		keymap("n", "<leader>al", "<cmd>AvanteSwitchSelectorProvider<CR>", { desc = "Avante: Switch selector", silent = true, noremap = true })
+		keymap("n", "<leader>aw", "<cmd>AvanteShowRepoMap<CR>", { desc = "Avante: Show repo map", silent = true, noremap = true })
 
 		-- Line number toggle (add this to your keymaps file)
 		keymap("n", "<leader>tn", function()

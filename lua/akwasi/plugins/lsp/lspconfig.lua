@@ -37,15 +37,21 @@ return {
 
 			if vim.fn.filereadable(biome_config_path) == 0 then
 				local biome_config = [[
-					{
-						"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
-						"linter": {
-							"enabled": true,
-							"rules": {
-							"recommended": true
-							}
-						}
-					}
+{
+  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "formatter": {
+    "enabled": true
+  },
+  "files": {
+    "ignore": ["**/*.vue"]
+  }
+}
 				]]
 				vim.fn.writefile(vim.split(biome_config, "\n"), biome_config_path)
 			end

@@ -7,16 +7,16 @@ return {
 		-- animate = {
 		-- enabled = true,
 		-- },
-		image = {
-			enabled = true,
-			-- Configure for CodeCompanion compatibility
-			integrations = {
-				markdown = {
-					enabled = true,
-					filetypes = { "markdown", "codecompanion" },
-				},
-			},
-		},
+		-- image = {
+		-- 	enabled = true,
+		-- 	-- Configure for CodeCompanion compatibility
+		-- 	integrations = {
+		-- 		markdown = {
+		-- 			enabled = true,
+		-- 			filetypes = { "markdown", "codecompanion" },
+		-- 		},
+		-- 	},
+		-- },
 		input = {
 			enabled = true,
 		},
