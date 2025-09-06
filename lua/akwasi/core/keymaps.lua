@@ -228,7 +228,15 @@ keymap("n", "<leader>sc", function()
 end, { desc = "Search current word", silent = true, noremap = true })
 keymap("n", "<leader>sp", function()
 	require("spectre").open_file_search({ select_word = true })
-end, { desc = "Search in current file", silent = true, noremap = true })
+end, { desc = "Spectre: Search & Replace in Current File", silent = true, noremap = true })
+-- Visual mode: Spectre search current selection globally
+keymap("v", "<leader>sv", function()
+	require("spectre").open_visual()
+end, { desc = "Spectre: Search selection in project", silent = true, noremap = true })
+-- Visual mode: Spectre search current selection in current file
+keymap("v", "<leader>sf", function()
+	require("spectre").open_file_search()
+end, { desc = "Spectre: Search selection in file", silent = true, noremap = true })
 
 -- LSP Keymaps
 local lsp_augroup = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true })
@@ -329,27 +337,76 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Avante AI Assistant keymaps
 		keymap("n", "<leader>a", "<nop>", { desc = "Avante AI", silent = true, noremap = true })
-		
+
 		-- Core Avante functions
-		keymap("n", "<leader>aa", "<cmd>AvanteAsk<CR>", { desc = "Avante: Ask AI", silent = true, noremap = true })
-		keymap("n", "<leader>ac", "<cmd>AvanteChat<CR>", { desc = "Avante: Chat", silent = true, noremap = true })
-		keymap("n", "<leader>an", "<cmd>AvanteChatNew<CR>", { desc = "Avante: New chat", silent = true, noremap = true })
-		keymap("n", "<leader>at", "<cmd>AvanteToggle<CR>", { desc = "Avante: Toggle sidebar", silent = true, noremap = true })
-		keymap("n", "<leader>af", "<cmd>AvanteFocus<CR>", { desc = "Avante: Focus sidebar", silent = true, noremap = true })
-		
+		local function avante_and_resize(cmd)
+			vim.cmd(cmd)
+			vim.cmd("wincmd =") -- equalize splits
+		end
+		keymap("n", "<leader>aa", function()
+			avante_and_resize("AvanteAsk")
+		end, { desc = "Avante: Ask AI", silent = true, noremap = true })
+		keymap("n", "<leader>ac", function()
+			avante_and_resize("AvanteChat")
+		end, { desc = "Avante: Chat", silent = true, noremap = true })
+		keymap("n", "<leader>an", function()
+			avante_and_resize("AvanteChatNew")
+		end, { desc = "Avante: New chat", silent = true, noremap = true })
+		keymap("n", "<leader>at", function()
+			avante_and_resize("AvanteToggle")
+		end, { desc = "Avante: Toggle sidebar", silent = true, noremap = true })
+		keymap("n", "<leader>af", function()
+			avante_and_resize("AvanteFocus")
+		end, { desc = "Avante: Focus sidebar", silent = true, noremap = true })
+
 		-- History and management
 		keymap("n", "<leader>ah", "<cmd>AvanteHistory<CR>", { desc = "Avante: History", silent = true, noremap = true })
-		keymap("n", "<leader>ax", "<cmd>AvanteClear<CR>", { desc = "Avante: Clear history", silent = true, noremap = true })
+		keymap(
+			"n",
+			"<leader>ax",
+			"<cmd>AvanteClear<CR>",
+			{ desc = "Avante: Clear history", silent = true, noremap = true }
+		)
 		keymap("n", "<leader>ar", "<cmd>AvanteRefresh<CR>", { desc = "Avante: Refresh", silent = true, noremap = true })
-		keymap("n", "<leader>as", "<cmd>AvanteStop<CR>", { desc = "Avante: Stop request", silent = true, noremap = true })
-		
+		keymap(
+			"n",
+			"<leader>as",
+			"<cmd>AvanteStop<CR>",
+			{ desc = "Avante: Stop request", silent = true, noremap = true }
+		)
+
 		-- Code editing and utilities
 		keymap("n", "<leader>ae", "<cmd>AvanteEdit<CR>", { desc = "Avante: Edit code", silent = true, noremap = true })
-		keymap("n", "<leader>ab", "<cmd>AvanteBuild<CR>", { desc = "Avante: Build dependencies", silent = true, noremap = true })
-		keymap("n", "<leader>am", "<cmd>AvanteModels<CR>", { desc = "Avante: Models list", silent = true, noremap = true })
-		keymap("n", "<leader>ap", "<cmd>AvanteSwitchProvider<CR>", { desc = "Avante: Switch provider", silent = true, noremap = true })
-		keymap("n", "<leader>al", "<cmd>AvanteSwitchSelectorProvider<CR>", { desc = "Avante: Switch selector", silent = true, noremap = true })
-		keymap("n", "<leader>aw", "<cmd>AvanteShowRepoMap<CR>", { desc = "Avante: Show repo map", silent = true, noremap = true })
+		keymap(
+			"n",
+			"<leader>ab",
+			"<cmd>AvanteBuild<CR>",
+			{ desc = "Avante: Build dependencies", silent = true, noremap = true }
+		)
+		keymap(
+			"n",
+			"<leader>am",
+			"<cmd>AvanteModels<CR>",
+			{ desc = "Avante: Models list", silent = true, noremap = true }
+		)
+		keymap(
+			"n",
+			"<leader>ap",
+			"<cmd>AvanteSwitchProvider<CR>",
+			{ desc = "Avante: Switch provider", silent = true, noremap = true }
+		)
+		keymap(
+			"n",
+			"<leader>al",
+			"<cmd>AvanteSwitchSelectorProvider<CR>",
+			{ desc = "Avante: Switch selector", silent = true, noremap = true }
+		)
+		keymap(
+			"n",
+			"<leader>aw",
+			"<cmd>AvanteShowRepoMap<CR>",
+			{ desc = "Avante: Show repo map", silent = true, noremap = true }
+		)
 
 		-- Line number toggle (add this to your keymaps file)
 		keymap("n", "<leader>tn", function()

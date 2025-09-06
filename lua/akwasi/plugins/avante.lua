@@ -53,8 +53,7 @@ return {
 		},
 		web_search_engine = {
 			provider = "tavily",
-			proxy = "nil",
-			api_key = "TAVILY_API_KEY",
+			api_key_name = "cmd:echo $TAVILY_API_KEY",
 		},
 		-- Provider configurations use sensible defaults
 		-- Only customize if you need to override specific settings

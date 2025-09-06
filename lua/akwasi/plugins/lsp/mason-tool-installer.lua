@@ -9,7 +9,7 @@ return {
 			-- Formatters
 			"prettierd",
 			"stylua",
-			"biome",
+			-- "biome",
 
 			-- Linters
 			"eslint",
