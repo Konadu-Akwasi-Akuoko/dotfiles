@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "browsermcp": {
+      "args": ["@browsermcp/mcp@latest"],
+      "command": "npx"
+    },
+    "Context7": {
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {}
+    },
+    "Playwright": {
+      "command": "npx @playwright/mcp@latest",
+      "env": {},
+      "args": []
+    }
+  }
+}
